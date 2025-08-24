@@ -7,10 +7,10 @@ import * as fs from 'fs';
 export class SamlStrategy extends PassportStrategy(Strategy, 'saml') {
     constructor() {
         super({
-            entryPoint: 'http://localhost:8080/realms/myrealm/protocol/saml', // URL авторизации Keycloak
+            entryPoint: 'http://localhost:8080/realms/master/protocol/saml', // URL авторизации Keycloak
             issuer: 'nest-saml-client', // clientId из JSON
             callbackUrl: 'http://localhost:3000/auth/saml/callback', // redirectUris[0]
-            cert: fs.readFileSync('sp-public-cert.pem', 'utf-8'), // publicKey
+            cert: fs.readFileSync('idp-public-cert.pem', 'utf-8'), // publicKey
             privateKey: fs.readFileSync('sp-private-key.pem', 'utf-8'), // privateKey
         } as SamlConfig)
     }
